@@ -172,35 +172,66 @@ void createTable(FILE *arquivoEntrada, char** colunas) {
       campo[strlen(campo) - 2] = '\0'; 
     colunas[i] = strdup(campo);
     campo = strtok(NULL, ",");
-  }  
+    printf("%s, ", colunas[i]);
+  }
 
   while(fgets(linha, TAM_REGISTRO, arquivoEntrada) != NULL){
     registroAtual.removido = '0';
 
-    char* campo = strtok(linha, ",");
-    char c;
+    if (fgetc(arquivoBinario) == ','){
+      campo = NULL;
+    }
+    else {
+      campo = strtok(linha, ",");
+    }
     
     for(int i = 0; i < 5; i++){
-      // printf("campo %s\n", campo);
       if(strcmp(colunas[i], "nomeTecnologiaOrigem") == 0){
+        if(campo == NULL){
+          registroAtual.TecnologiaOrigem.tamanho = 0;
+          registroAtual.TecnologiaDestino.string = "NULO";
+      }
+        else{
           registroAtual.TecnologiaOrigem.tamanho = strlen(campo);
           registroAtual.TecnologiaOrigem.string = campo;
+        }
       }
       else if(strcmp(colunas[i], "nomeTecnologiaDestino") == 0){
+        if(campo == NULL){
+          registroAtual.TecnologiaDestino.tamanho = 0;
+          registroAtual.TecnologiaDestino.string = "NULO";
+        }
+        else{
           registroAtual.TecnologiaDestino.tamanho = strlen(campo);
           registroAtual.TecnologiaDestino.string = campo;
+        }
       }
       else if(strcmp(colunas[i], "grupo") == 0)
+        if(campo == NULL)
+          registroAtual.grupo = atoi(NULO);
+        else
         registroAtual.grupo = atoi(campo);
       else if(strcmp(colunas[i], "popularidade") == 0)
+        if(campo == NULL)
+          registroAtual.popularidade = atoi(NULO);
+        else
         registroAtual.popularidade = atoi(campo);
       else if(strcmp(colunas[i], "peso") == 0){
+        if(campo == NULL)
+          registroAtual.peso = atoi(NULO);
+        else
         registroAtual.peso = atoi(campo);
       }
 
-      campo = strtok(NULL, ",");
-      // printf("%s\n", campo);
+      if (fgetc(arquivoBinario) == ','){
+        campo = NULL;
+      }
+      else {
+        campo = strtok(NULL, ",");
+      }
     }
+    printf("%s, %d, %d, %s, %d\n", registroAtual.TecnologiaOrigem.string, registroAtual.grupo, registroAtual.popularidade, registroAtual.TecnologiaDestino.string, registroAtual.peso);
+
 
     // if(registroAtual.TecnologiaOrigem.tamanho > 0){
     //   if(registroAtual.TecnologiaDestino.tamanho > 0)
@@ -316,7 +347,6 @@ void imprimeArquivo(){
     fseek(arquivoBinario, TAM_REGISTRO - tam_bytes + 1, SEEK_CUR);
 
     printf("%s, %d, %d, %s, %d\n", registro.TecnologiaOrigem.string, registro.grupo, registro.popularidade, registro.TecnologiaDestino.string, registro.peso);
-    // printf("%c, %d, %d, %d, %d, %s, %d, %s\n", registro.removido, registro.grupo, registro.popularidade, registro. peso, registro.TecnologiaOrigem.tamanho, registro.TecnologiaOrigem.string, registro.TecnologiaDestino.tamanho, registro.TecnologiaDestino.string);
       free(registro.TecnologiaOrigem.string);
       free(registro.TecnologiaDestino.string);
   }
@@ -333,12 +363,12 @@ int main() {
   char* colunas[5];
   FILE *arquivoEntrada;
   // arquivoEntrada = fopen("tecnologia.csv", "r");
-  arquivoEntrada = fopen("dados1.csv", "r");
-  // arquivoEntrada = fopen("dados2.csv", "r");
+  // arquivoEntrada = fopen("dados1.csv", "r");
+  arquivoEntrada = fopen("dados2.csv", "r");
   createTable(arquivoEntrada, colunas);
   fclose(arquivoEntrada);
 
-  imprimeArquivo();
+  // imprimeArquivo();
   
   return 0;
 }
