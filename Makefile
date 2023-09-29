@@ -1,4 +1,7 @@
 all:
-gcc -o T_zero *.c
+	gcc -g -o T_zero *.c
 run:
-./T_zero
+	./T_zero
+
+test:
+	valgrind --leak-check=full -s ./T_zero
