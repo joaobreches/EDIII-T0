@@ -304,3 +304,15 @@ Registro trabalhaRegistros(FILE *arquivo, Registro *registro){
 
   return *registro;
 }
+
+char* diretorioArquivo(char* nomeArquivo, char tipoArquivo){
+  char* diretorio;
+  
+  if (tipoArquivo == 'b')
+    diretorio = "./arquivo/bin/";
+  else
+    diretorio = "./arquivo/csv/";
+
+ stringcat(diretorio, nomeArquivo);
+ return diretorio;
+}

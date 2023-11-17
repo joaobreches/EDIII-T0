@@ -11,12 +11,16 @@ void criaTabela(char* nomeArquivoCSV, char* nomeArquivoBinario) {
   Essa funcao representa a funcionalidade 1 do exercicio introdutorio.
   */
 
+ nomeArquivoCSV = diretorioArquivo(nomeArquivoCSV, 'c');
+
   // abre arquivo csv
   FILE* arquivoCSV = fopen(nomeArquivoCSV, "r");
   if (arquivoCSV == NULL) {
     printf("Falha no processamento do arquivo.\n");
     return;
   }
+
+  nomeArquivoBinario = diretorioArquivo(nomeArquivoBinario, 'b');
 
   // abre arquivo binario
   FILE *arquivoBinario = fopen(nomeArquivoBinario, "wb+");
