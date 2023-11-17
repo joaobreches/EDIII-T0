@@ -1,13 +1,31 @@
-allg:
-	gcc -g -o T_zero *.c
+allg: #verify if still runs with directory changes
+	gcc -g -o ./bin/main *.c
 
-test:
-	valgrind --leak-check=full -s ./T_zero
+test: #verify if still runs with directory changes
+	valgrind --leak-check=full -s ./bin/main
 
 all:
-	gcc -c ./funcoesBasicas.c -o ./funcoesBasicas.o
-	gcc -c ./funcoesFornecidas.c -o ./funcoesFornecidas.o
-	gcc -c ./T_zero.c -o ./T_zero
+	gcc -c ./src/funcoesFornecidas.c -I ./include -o ./obj/funcoesFornecidas.o
+	gcc -c ./src/registro.c -I ./include -o ./obj/registro.o
+	gcc -c ./src/funcionalidades.c -I ./include -o ./obj/funcionalidades.o
+	gcc ./apps/main.c ./obj/*.o -I ./include -o ./bin/main
 
 run:
-	./T_zero
+	./bin/main
+
+runwindows:
+	.\bin\main
+
+crw:  #compile and run for windows
+	gcc -c ./src/funcoesFornecidas.c -I ./include -o ./obj/funcoesFornecidas.o
+	gcc -c ./src/registro.c -I ./include -o ./obj/registro.o
+	gcc -c ./src/funcionalidades.c -I ./include -o ./obj/funcionalidades.o
+	gcc ./apps/main.c ./obj/*.o -I ./include -o ./bin/main
+	.\bin\main
+
+crl: #compile and run for linux
+	gcc -c ./src/funcoesFornecidas.c -I ./include -o ./obj/funcoesFornecidas.o
+	gcc -c ./src/registro.c -I ./include -o ./obj/registro.o
+	gcc -c ./src/funcionalidades.c -I ./include -o ./obj/funcionalidades.o
+	gcc ./apps/main.c ./obj/*.o -I ./include -o ./bin/main
+	./bin/main
