@@ -305,18 +305,19 @@ Registro trabalhaRegistros(FILE *arquivo, Registro *registro){
   return *registro;
 }
 
-char* diretorioArquivo(char* nomeArquivo, char tipoArquivo){
-  char* diretorio;
-  char separador = '/';
+char* diretorioArquivo(char* nomeArquivo, char tipoArquivo) {
+    char* diretorio;
   
-  // if(tipoSO == 'w')
-  //   separador = '\';
+    if (tipoArquivo == 'b')
+        diretorio = strdup("arquivo/binario/");
+    else
+        diretorio = strdup("arquivo/csv/");
 
-  if (tipoArquivo == 'b')
-    diretorio = "../arquivo/binario/";
-  else
-    diretorio = "../arquivo/csv/";
+    char* resultado = malloc(strlen(diretorio) + strlen(nomeArquivo) + 1);
+    strcpy(resultado, diretorio);
+    strcat(resultado, nomeArquivo);
 
- strcat(diretorio, nomeArquivo);
- return diretorio;
+    free(diretorio); // Liberar a memória alocada para a string original
+
+    return resultado;
 }

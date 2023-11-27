@@ -11,8 +11,7 @@ void criaTabela(char* nomeArquivoCSV, char* nomeArquivoBinario) {
   Essa funcao representa a funcionalidade 1 do exercicio introdutorio.
   */
 
-//  nomeArquivoCSV = diretorioArquivo(nomeArquivoCSV, 'c');
- printf("nome CSV: %s\n", nomeArquivoCSV);
+ nomeArquivoCSV = diretorioArquivo(nomeArquivoCSV, 'c');
 
   // abre arquivo csv
   FILE* arquivoCSV = fopen(nomeArquivoCSV, "r");
@@ -20,21 +19,14 @@ void criaTabela(char* nomeArquivoCSV, char* nomeArquivoBinario) {
     printf("Falha no processamento do arquivo.\n");
     return;
   }
-  else {
-    printf("arquivo csv aberto\n");
-  }
 
-  // nomeArquivoBinario = diretorioArquivo(nomeArquivoBinario, 'b');
-  printf("nome Bin: %s\n", nomeArquivoBinario);
+  nomeArquivoBinario = diretorioArquivo(nomeArquivoBinario, 'b');
 
   // abre arquivo binario
   FILE *arquivoBinario = fopen(nomeArquivoBinario, "wb+");
   if (arquivoBinario == NULL) {
     printf("Falha no processamento do arquivo.\n");
     return;
-  }
-  else {
-    printf("arquivo binario aberto\n");
   }
 
   // inicializa o cabecalho do arquivo binario

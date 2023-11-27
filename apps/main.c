@@ -38,7 +38,6 @@ int main() {
   // chama cada funcionalidade de acordo com a entrada no terminal
   switch (funcionalidade){
     case 1:
-      printf("%s %s\n", leitura1, leitura2);
       criaTabela(leitura1, leitura2);
       leitura2 = (char*) leitura2;
       binarioNaTela(leitura2);
