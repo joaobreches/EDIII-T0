@@ -1,5 +1,5 @@
-#include "funcoesFornecidas.h"
-#include "funcionalidades.h"
+#include "../include/funcoesFornecidas.h"
+#include "../include/funcionalidades.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -38,6 +38,7 @@ int main() {
   // chama cada funcionalidade de acordo com a entrada no terminal
   switch (funcionalidade){
     case 1:
+      printf("%s %s\n", leitura1, leitura2);
       criaTabela(leitura1, leitura2);
       leitura2 = (char*) leitura2;
       binarioNaTela(leitura2);

@@ -1,4 +1,4 @@
-#include "registro.h"
+#include "../include/registro.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -307,12 +307,16 @@ Registro trabalhaRegistros(FILE *arquivo, Registro *registro){
 
 char* diretorioArquivo(char* nomeArquivo, char tipoArquivo){
   char* diretorio;
+  char separador = '/';
   
-  if (tipoArquivo == 'b')
-    diretorio = "./arquivo/bin/";
-  else
-    diretorio = "./arquivo/csv/";
+  // if(tipoSO == 'w')
+  //   separador = '\';
 
- stringcat(diretorio, nomeArquivo);
+  if (tipoArquivo == 'b')
+    diretorio = "../arquivo/binario/";
+  else
+    diretorio = "../arquivo/csv/";
+
+ strcat(diretorio, nomeArquivo);
  return diretorio;
 }
