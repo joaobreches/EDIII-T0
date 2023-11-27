@@ -9,6 +9,6 @@
 void criaTabela(char* nomeArquivoCSV, char* nomeArquivoBinario);
 void imprimeArquivo(char* nomeArquivoBinario);
 void recuperaDados(char *arquivoEntrada, int n);
-void recuperaRegistro(const char *arquivoEntrada, int rrn);
+void recuperaRegistro(char *arquivoEntrada, int rrn);
 
 #endif

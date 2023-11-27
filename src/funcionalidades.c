@@ -179,6 +179,8 @@ void imprimeArquivo(char* nomeArquivoBinario) {
   */
   
   // abre arquivo binario 
+  nomeArquivoBinario = diretorioArquivo(nomeArquivoBinario, 'b');
+
   FILE *arquivoBinario = fopen(nomeArquivoBinario, "rb");
   if (arquivoBinario == NULL) {
     printf("Falha no processamento do arquivo.\n");
@@ -224,6 +226,8 @@ void recuperaDados(char *arquivoEntrada, int n) {
   */
 
   // abre arquivo binario 
+  arquivoEntrada = diretorioArquivo(arquivoEntrada, 'b');
+
   FILE *arquivo = fopen(arquivoEntrada, "rb");
   if (arquivo == NULL) {
     printf("Falha no processamento do arquivo. \n");
@@ -317,7 +321,7 @@ void recuperaDados(char *arquivoEntrada, int n) {
   fclose(arquivo);
 }
 
-void recuperaRegistro(const char *arquivoEntrada, int rrn) {
+void recuperaRegistro(char *arquivoEntrada, int rrn) {
   /*
   Essa funcao le um arquivo binario e imprime o registro de acordo com o seu RRN.
 
@@ -325,6 +329,8 @@ void recuperaRegistro(const char *arquivoEntrada, int rrn) {
   */
 
   // abre arquivo binario 
+  arquivoEntrada = diretorioArquivo(arquivoEntrada, 'b');
+
   FILE *arquivo = fopen(arquivoEntrada, "rb");
   if (arquivo == NULL) {
     printf("Falha no processamento do arquivo.\n");
